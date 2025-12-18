@@ -13,7 +13,7 @@ const Logo = ({ className, variant = "default", showText = false }: LogoProps) =
       <img 
         src={logoImage} 
         alt="Strategic eHealth Solutions Logo" 
-        className="h-12 w-auto object-contain"
+        className="h-16 w-auto object-contain drop-shadow-lg"
       />
       {showText && (
         <div className="flex flex-col">
