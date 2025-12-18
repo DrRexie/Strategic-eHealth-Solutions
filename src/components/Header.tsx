@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
 
@@ -12,7 +13,16 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -28,7 +38,12 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-card py-3"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white py-3",
+        isScrolled 
+          ? "shadow-elevated border-b border-primary/10" 
+          : "shadow-card"
+      )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <button onClick={scrollToTop} className="cursor-pointer">
