@@ -1,3 +1,4 @@
+import { Linkedin } from "lucide-react";
 import Logo from "./Logo";
 
 const Footer = () => {
@@ -21,9 +22,18 @@ const Footer = () => {
               Powering Ghana's Digital Health Future — Strategic eHealth Solutions is your 
               trusted partner for national-scale health system transformation.
             </p>
-            <p className="text-secondary text-sm font-medium">
+            <p className="text-secondary text-sm font-medium mb-4">
               "Connecting Care Through Intelligent Health Systems"
             </p>
+            <a
+              href="https://www.linkedin.com/company/strategic-ehealth-solutions/?viewAsMember=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            >
+              <Linkedin className="w-5 h-5" />
+              <span className="text-sm">Follow us on LinkedIn</span>
+            </a>
           </div>
 
           {/* Quick Links */}
@@ -53,7 +63,7 @@ const Footer = () => {
             <div className="space-y-2 text-white/60 text-sm">
               <p>Accra, Ghana</p>
               <p>contact@strategicehealth.com</p>
-              <p>+233 (0) 30 XXX XXXX</p>
+              <p>+233 (0) 20136 5160</p>
             </div>
           </div>
         </div>
