@@ -22,8 +22,8 @@ const VideoDemoModal = ({ open, onOpenChange }: VideoDemoModalProps) => {
         <div className="aspect-video w-full">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0"
-            title="Strategic eHealth Solutions Demo"
+            src="https://www.youtube.com/embed/0eCQr-F3a30?autoplay=0"
+            title="EMR Implementation Demo - Strategic eHealth Solutions"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
