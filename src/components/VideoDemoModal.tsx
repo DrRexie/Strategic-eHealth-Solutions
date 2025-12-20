@@ -44,7 +44,7 @@ const VideoDemoModal = ({ open, onOpenChange }: VideoDemoModalProps) => {
             <div className="aspect-video w-full bg-black">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/7xz1ue6StEg?autoplay=0"
+                src="https://www.youtube.com/embed/gwd9J-y7tvA?autoplay=0"
                 title="Healthbridge Clinical EMR Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
