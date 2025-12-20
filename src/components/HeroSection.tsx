@@ -1,12 +1,18 @@
+import { useState } from "react";
 import { ArrowRight, Play, Shield, Users, Zap } from "lucide-react";
 import { Button } from "./ui/button";
+import VideoDemoModal from "./VideoDemoModal";
 
 const HeroSection = () => {
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
+    <>
+      <VideoDemoModal open={showDemoModal} onOpenChange={setShowDemoModal} />
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
@@ -57,7 +63,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               variant="outline"
-              onClick={scrollToContact}
+              onClick={() => setShowDemoModal(true)}
               className="border-white bg-white/10 text-white hover:bg-white/20 font-semibold px-8 py-6 text-base"
             >
               <Play className="mr-2 w-5 h-5" />
@@ -99,6 +105,7 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
