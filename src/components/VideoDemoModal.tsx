@@ -30,7 +30,7 @@ const VideoDemoModal = ({ open, onOpenChange }: VideoDemoModalProps) => {
               value="healthbridge" 
               className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3"
             >
-              Healthbridge EMR
+              EPIC Systems
             </TabsTrigger>
             <TabsTrigger 
               value="epic" 
