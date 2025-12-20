@@ -58,7 +58,7 @@ const HeroSection = () => {
               size="lg" 
               variant="outline"
               onClick={scrollToContact}
-              className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-6 text-base"
+              className="border-white bg-white/10 text-white hover:bg-white/20 font-semibold px-8 py-6 text-base"
             >
               <Play className="mr-2 w-5 h-5" />
               Request a Demo
