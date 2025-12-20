@@ -38,10 +38,10 @@ const ContactSection = () => {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      organization: "",
-      email: "",
-      role: "",
+      name: "Dr. Rex Acheampong",
+      organization: "Strategic eHealth Solutions",
+      email: "krexie@hotmail.com",
+      role: "Chief Informatics Officer",
       engagement_type: "",
       message: "",
     },
