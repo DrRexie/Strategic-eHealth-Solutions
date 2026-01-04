@@ -1,4 +1,5 @@
 import { Building2, Globe, Target, Award } from "lucide-react";
+import companySign from "@/assets/gallery/company-sign.png";
 
 const AboutSection = () => {
   const expertise = [
@@ -27,6 +28,18 @@ const AboutSection = () => {
   return (
     <section id="about" className="py-24 bg-background">
       <div className="container mx-auto px-4">
+        {/* Featured Image */}
+        <div className="mb-16 flex justify-center">
+          <div className="relative rounded-2xl overflow-hidden shadow-elevated max-w-3xl">
+            <img
+              src={companySign}
+              alt="Strategic eHealth Solutions - Better Health, One Click Away"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Content */}
           <div>

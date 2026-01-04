@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Images } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
+import GalleryModal from "./GalleryModal";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -15,6 +16,7 @@ const navLinks = [
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +63,13 @@ const Header = () => {
               {link.label}
             </button>
           ))}
+          <button
+            onClick={() => setIsGalleryOpen(true)}
+            className="text-sm font-medium transition-colors text-primary hover:text-secondary flex items-center gap-1.5"
+          >
+            <Images className="w-4 h-4" />
+            Gallery
+          </button>
         </nav>
 
         {/* Desktop CTA */}
@@ -108,6 +117,16 @@ const Header = () => {
                 {link.label}
               </button>
             ))}
+            <button
+              onClick={() => {
+                setIsGalleryOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-foreground font-medium py-2 px-4 text-left hover:bg-muted rounded-lg transition-colors flex items-center gap-2"
+            >
+              <Images className="w-4 h-4" />
+              Gallery
+            </button>
             <div className="pt-4 flex flex-col gap-2">
               <Button
                 variant="outline"
@@ -126,6 +145,9 @@ const Header = () => {
           </nav>
         </div>
       )}
+
+      {/* Gallery Modal */}
+      <GalleryModal open={isGalleryOpen} onOpenChange={setIsGalleryOpen} />
     </header>
   );
 };
