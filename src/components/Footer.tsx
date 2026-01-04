@@ -1,4 +1,4 @@
-import { Linkedin } from "lucide-react";
+import { Linkedin, Globe } from "lucide-react";
 import Logo from "./Logo";
 
 const Footer = () => {
@@ -25,15 +25,26 @@ const Footer = () => {
             <p className="text-secondary text-sm font-medium mb-4">
               "Connecting Care Through Intelligent Health Systems"
             </p>
-            <a
-              href="https://www.linkedin.com/company/strategic-ehealth-solutions/?viewAsMember=true"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span className="text-sm">Follow us on LinkedIn</span>
-            </a>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.linkedin.com/company/strategic-ehealth-solutions/?viewAsMember=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span className="text-sm">LinkedIn</span>
+              </a>
+              <a
+                href="https://drrexacheampong.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+              >
+                <Globe className="w-5 h-5" />
+                <span className="text-sm">Dr. Rex Acheampong</span>
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
