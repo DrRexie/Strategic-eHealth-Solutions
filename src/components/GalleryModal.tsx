@@ -4,11 +4,17 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import companySign from "@/assets/gallery/company-sign.png";
+import ceoPortrait from "@/assets/gallery/ceo-portrait.png";
 import drRexOffice1 from "@/assets/gallery/dr-rex-office-1.png";
 import drRexOffice2 from "@/assets/gallery/dr-rex-office-2.png";
 import drRexLibrary from "@/assets/gallery/dr-rex-library.png";
 
 const galleryImages = [
+  {
+    src: ceoPortrait,
+    alt: "Dr. Rex Acheampong - Strategic eHealth Solutions Founder",
+    caption: "Dr. Rex Acheampong, Founder & CEO",
+  },
   {
     src: companySign,
     alt: "Strategic eHealth Solutions - Company Sign",
