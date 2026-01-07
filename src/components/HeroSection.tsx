@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRight, Play, Shield, Users, Zap } from "lucide-react";
 import { Button } from "./ui/button";
 import VideoDemoModal from "./VideoDemoModal";
+import companyLogo from "@/assets/gallery/company-logo-main.png";
 
 const HeroSection = () => {
   const [showDemoModal, setShowDemoModal] = useState(false);
@@ -25,10 +26,19 @@ const HeroSection = () => {
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
-      <div className="container mx-auto px-4 py-32 relative z-10">
+      <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
+          {/* Company Logo */}
+          <div className="mb-10 animate-fade-up">
+            <img 
+              src={companyLogo} 
+              alt="Strategic eHealth Solutions" 
+              className="w-64 md:w-80 lg:w-96 h-auto mx-auto"
+            />
+          </div>
+
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8 animate-fade-up">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8 animate-fade-up" style={{ animationDelay: '0.1s' }}>
             <Shield className="w-4 h-4 text-secondary" />
             <span className="text-white/90 text-sm font-medium">
               Trusted by Ghana Health Service

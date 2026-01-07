@@ -8,8 +8,20 @@ import ceoPortrait from "@/assets/gallery/ceo-portrait.png";
 import drRexOffice1 from "@/assets/gallery/dr-rex-office-1.png";
 import drRexOffice2 from "@/assets/gallery/dr-rex-office-2.png";
 import drRexLibrary from "@/assets/gallery/dr-rex-library.png";
+import companyLogoMain from "@/assets/gallery/company-logo-main.png";
+import exploreImpact from "@/assets/gallery/explore-impact.png";
+import nationalScaleImpact from "@/assets/gallery/national-scale-impact.png";
+import dataDrivenHealth from "@/assets/gallery/data-driven-health.png";
+import seamlessDataExchange from "@/assets/gallery/seamless-data-exchange.png";
+import healthSecurity from "@/assets/gallery/health-security.png";
+import nationalScaleImpact2 from "@/assets/gallery/national-scale-impact-2.png";
 
 const galleryImages = [
+  {
+    src: companyLogoMain,
+    alt: "Strategic eHealth Solutions - Company Logo",
+    caption: "Strategic eHealth Solutions",
+  },
   {
     src: ceoPortrait,
     alt: "Dr. Rex Acheampong - Strategic eHealth Solutions Founder",
@@ -19,6 +31,36 @@ const galleryImages = [
     src: companySign,
     alt: "Strategic eHealth Solutions - Company Sign",
     caption: "Better Health, One Click Away",
+  },
+  {
+    src: exploreImpact,
+    alt: "Explore Impact - Digital Health Network",
+    caption: "Explore Impact",
+  },
+  {
+    src: nationalScaleImpact,
+    alt: "National-Scale Impact",
+    caption: "Explore Impact - National Scale",
+  },
+  {
+    src: dataDrivenHealth,
+    alt: "Data-Driven Health Impact",
+    caption: "Data-Driven Health Impact",
+  },
+  {
+    src: seamlessDataExchange,
+    alt: "Seamless Data Exchange",
+    caption: "Seamless Data Exchange",
+  },
+  {
+    src: healthSecurity,
+    alt: "Strengthen National Health Security",
+    caption: "National Health Security Infrastructure",
+  },
+  {
+    src: nationalScaleImpact2,
+    alt: "National-Scale Impact",
+    caption: "A Robust, Scalable Digital Foundation",
   },
   {
     src: drRexOffice1,
