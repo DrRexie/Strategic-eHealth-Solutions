@@ -9,7 +9,6 @@ import { Textarea } from "./ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -50,18 +49,29 @@ const ContactSection = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase
-        .from("consultation_requests")
-        .insert({
-          name: data.name,
-          organization: data.organization,
-          email: data.email,
-          role: data.role,
-          engagement_type: data.engagement_type,
-          message: data.message,
-        });
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-consultation`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: data.name,
+            organization: data.organization,
+            email: data.email,
+            role: data.role,
+            engagement_type: data.engagement_type,
+            message: data.message,
+          }),
+        }
+      );
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Submission failed");
+      }
 
       setIsSuccess(true);
       form.reset();
