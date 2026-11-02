@@ -29,6 +29,13 @@ const engagementTypes = [
   { value: "other", label: "Other" },
 ];
 
+// Inquiries go to the Site Console dashboard, which stores them and emails an alert.
+const INQUIRY_ENDPOINT = "https://rex-console.vercel.app/api/inquiries";
+
+// Map this form's engagement types onto the dashboard's audience groups.
+const audienceFor = (engagement: string) =>
+  engagement === "partnership" || engagement === "donor" ? "government" : "other";
+
 const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -37,10 +44,10 @@ const ContactSection = () => {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "Dr. Rex Acheampong",
-      organization: "Strategic eHealth Solutions",
-      email: "krexie@hotmail.com",
-      role: "Chief Informatics Officer",
+      name: "",
+      organization: "",
+      email: "",
+      role: "",
       engagement_type: "",
       message: "",
     },
@@ -49,27 +56,26 @@ const ContactSection = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-consultation`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: data.name,
-            organization: data.organization,
-            email: data.email,
-            role: data.role,
-            engagement_type: data.engagement_type,
-            message: data.message,
-          }),
-        }
-      );
+      const engagementLabel =
+        engagementTypes.find((t) => t.value === data.engagement_type)?.label ?? data.engagement_type;
+      const response = await fetch(INQUIRY_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          organization: data.organization,
+          email: data.email,
+          role: data.role,
+          audience: audienceFor(data.engagement_type),
+          service: engagementLabel,
+          message: data.message,
+          website: "", // honeypot field expected by the endpoint; always empty here
+        }),
+      });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
-      if (!response.ok) {
+      if (!response.ok || !result.ok) {
         throw new Error(result.error || "Submission failed");
       }
 
