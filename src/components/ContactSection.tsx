@@ -9,6 +9,7 @@ import { Textarea } from "./ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { track } from "@/lib/track";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -79,6 +80,7 @@ const ContactSection = () => {
         throw new Error(result.error || "Submission failed");
       }
 
+      track("inquiry_submit");
       setIsSuccess(true);
       form.reset();
       toast({
