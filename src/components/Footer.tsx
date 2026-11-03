@@ -73,7 +73,7 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <div className="space-y-2 text-white/60 text-sm">
               <p>Accra, Ghana</p>
-              <p>contact@strategicehealth.com</p>
+              <a href="mailto:contact@strategicehealthsolutions.com" className="block hover:text-white transition-colors">contact@strategicehealthsolutions.com</a>
               <a href="tel:+233201365160" className="hover:text-white transition-colors">+233 (0) 20136 5160</a>
             </div>
           </div>
