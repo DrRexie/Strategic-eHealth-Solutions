@@ -1,4 +1,7 @@
-import { Building2, Globe, Target, Award } from "lucide-react";
+import { Building2, Globe, Target, Award, ArrowRight } from "lucide-react";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import DetailDialog from "@/components/DetailDialog";
+import { ABOUT_DETAILS } from "@/data/about-details";
 import ceoPortrait from "@/assets/gallery/ceo-portrait.png";
 
 const AboutSection = () => {
@@ -79,7 +82,7 @@ const AboutSection = () => {
             {expertise.map((item, index) => (
               <div 
                 key={item.title}
-                className="bg-card p-6 rounded-2xl shadow-card hover-lift border border-border"
+                className="bg-card p-6 rounded-2xl shadow-card hover-lift border border-border flex flex-col"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="w-12 h-12 bg-primary/[0.07] ring-1 ring-primary/15 rounded-xl flex items-center justify-center mb-4">
@@ -88,9 +91,24 @@ const AboutSection = () => {
                 <h3 className="font-display font-semibold text-foreground mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                   {item.description}
                 </p>
+                {ABOUT_DETAILS[item.title] && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button
+                        type="button"
+                        className="group mt-4 inline-flex min-h-11 items-center gap-2 self-start rounded-md text-sm font-medium text-primary transition-all hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        Learn More
+                        <span className="sr-only"> about {item.title}</span>
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </DialogTrigger>
+                    <DetailDialog content={{ ...ABOUT_DETAILS[item.title], title: item.title }} />
+                  </Dialog>
+                )}
               </div>
             ))}
           </div>
