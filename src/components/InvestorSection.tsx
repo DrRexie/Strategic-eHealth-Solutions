@@ -40,15 +40,15 @@ const InvestorSection = () => {
   };
 
   return (
-    <section id="partner" className="py-24 gradient-subtle">
+    <section id="partner" className="py-24 md:py-32 gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Value Proposition */}
           <div>
-            <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+            <span className="eyebrow mb-5">
               For Investors & Donors
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-6 leading-[1.1]">
               A Trusted Platform for{" "}
               <span className="text-gradient">Measurable Health Impact</span>
             </h2>
@@ -65,16 +65,16 @@ const InvestorSection = () => {
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap gap-4 mb-8">
-              <div className="bg-card px-4 py-3 rounded-lg shadow-card border border-border">
-                <div className="text-2xl font-bold text-primary">$10M+</div>
+              <div className="bg-card px-5 py-4 rounded-2xl shadow-card border border-border">
+                <div className="font-display text-2xl font-extrabold tracking-tight text-primary">$10M+</div>
                 <div className="text-sm text-muted-foreground">Investment Deployed</div>
               </div>
-              <div className="bg-card px-4 py-3 rounded-lg shadow-card border border-border">
-                <div className="text-2xl font-bold text-secondary">5+</div>
+              <div className="bg-card px-5 py-4 rounded-2xl shadow-card border border-border">
+                <div className="font-display text-2xl font-extrabold tracking-tight text-secondary">5+</div>
                 <div className="text-sm text-muted-foreground">Development Partners</div>
               </div>
-              <div className="bg-card px-4 py-3 rounded-lg shadow-card border border-border">
-                <div className="text-2xl font-bold text-accent">100%</div>
+              <div className="bg-card px-5 py-4 rounded-2xl shadow-card border border-border">
+                <div className="font-display text-2xl font-extrabold tracking-tight text-accent">100%</div>
                 <div className="text-sm text-muted-foreground">On-Time Delivery</div>
               </div>
             </div>
@@ -102,10 +102,10 @@ const InvestorSection = () => {
             {alignmentPoints.map((point, index) => (
               <div
                 key={point.title}
-                className="bg-card p-5 rounded-xl shadow-card border border-border hover-lift"
+                className="bg-card p-5 rounded-2xl shadow-card border border-border hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/[0.07] ring-1 ring-primary/15 flex items-center justify-center mb-3">
                   <point.icon className="w-5 h-5 text-primary" />
                 </div>
                 <h3 className="font-display font-semibold text-foreground mb-1 text-sm">

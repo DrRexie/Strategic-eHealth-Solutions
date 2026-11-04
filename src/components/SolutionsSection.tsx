@@ -70,14 +70,14 @@ const SolutionsSection = () => {
   };
 
   return (
-    <section id="solutions" className="py-24 gradient-subtle">
+    <section id="solutions" className="py-24 md:py-32 gradient-subtle">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+          <span className="eyebrow mb-5">
             Core Solutions
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-6 leading-[1.1]">
             Comprehensive Digital Health{" "}
             <span className="text-gradient">Solutions for GHS</span>
           </h2>
@@ -92,11 +92,11 @@ const SolutionsSection = () => {
           {solutions.map((solution, index) => (
             <div
               key={solution.title}
-              className="bg-card rounded-2xl p-8 shadow-card hover-lift border border-border group"
+              className="bg-card rounded-3xl p-8 shadow-card hover-lift border border-border group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
                 solution.color === 'primary' ? 'bg-primary/10' :
                 solution.color === 'secondary' ? 'bg-secondary/10' : 'bg-accent/10'
               }`}>
@@ -115,7 +115,7 @@ const SolutionsSection = () => {
               </p>
 
               {/* Features */}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2.5 mb-7 border-t border-border pt-5">
                 {solution.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2 text-sm text-foreground">
                     <div className={`w-1.5 h-1.5 rounded-full ${

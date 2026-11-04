@@ -80,8 +80,9 @@ const connectedSystems = [
 
 const AIIntelligenceSection = () => {
   return (
-    <section id="ai-intelligence" className="py-24 bg-healthcare-navy relative overflow-hidden">
+    <section id="ai-intelligence" className="py-24 md:py-32 bg-healthcare-navy relative overflow-hidden">
       {/* Background Effects */}
+      <div className="absolute inset-0 bg-grid" aria-hidden="true" />
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl" />
@@ -104,10 +105,10 @@ const AIIntelligenceSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+          <span className="eyebrow eyebrow-dark mb-5">
             AI-Powered Intelligence
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-[1.1]">
             National Health Intelligence{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">
               Powered by AI
@@ -178,10 +179,10 @@ const AIIntelligenceSection = () => {
           {aiCapabilities.map((capability, index) => (
             <div
               key={capability.title}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300"
+              className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] hover:border-secondary/40 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-xl ring-1 ring-white/10 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center mb-4">
                 <capability.icon className="w-6 h-6 text-secondary" />
               </div>
               <h3 className="font-display font-semibold text-white mb-2">

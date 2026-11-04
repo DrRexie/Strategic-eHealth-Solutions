@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import logoImage from "@/assets/logo.png";
+import BrandMark from "./BrandMark";
 
 interface LogoProps {
   className?: string;
@@ -7,27 +7,29 @@ interface LogoProps {
   showText?: boolean;
 }
 
-const Logo = ({ className, variant = "default", showText = false }: LogoProps) => {
+/** Horizontal lockup: Connected S mark + STRATEGIC / eHealth Solutions wordmark. */
+const Logo = ({ className, variant = "default", showText = true }: LogoProps) => {
+  const white = variant === "white";
   return (
-    <div className={cn("flex items-center gap-3", className)}>
-      <img 
-        src={logoImage} 
-        alt="Strategic eHealth Solutions Logo" 
-        className="h-16 w-auto object-contain drop-shadow-lg"
-      />
+    <div className={cn("flex items-center gap-3", className)} aria-label="Strategic eHealth Solutions">
+      <BrandMark variant={white ? "light" : "tile"} className={white ? "h-11 w-11" : "h-10 w-10"} />
       {showText && (
-        <div className="flex flex-col">
-          <span className={cn(
-            "font-display font-bold text-lg leading-tight tracking-tight",
-            variant === "white" ? "text-white" : "text-foreground"
-          )}>
-            Strategic eHealth
+        <div className="flex flex-col text-left leading-none">
+          <span
+            className={cn(
+              "font-display text-[19px] font-extrabold tracking-[0.06em]",
+              white ? "text-white" : "text-healthcare-navy",
+            )}
+          >
+            STRATEGIC
           </span>
-          <span className={cn(
-            "font-display font-semibold text-sm leading-tight",
-            variant === "white" ? "text-white/80" : "text-secondary"
-          )}>
-            Solutions
+          <span
+            className={cn(
+              "mt-1 font-display text-[12.5px] font-semibold tracking-[0.01em]",
+              white ? "text-[#8FDCD2]" : "text-primary",
+            )}
+          >
+            eHealth Solutions
           </span>
         </div>
       )}

@@ -26,27 +26,27 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-background">
+    <section id="about" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-4">
         {/* Featured Image */}
         <div className="mb-16 flex justify-center">
-          <div className="relative rounded-2xl overflow-hidden shadow-elevated max-w-3xl">
+          <div className="relative rounded-3xl overflow-hidden shadow-elevated ring-1 ring-black/5 max-w-3xl">
             <img
               src={ceoPortrait}
               alt="Dr. Rex Acheampong - Strategic eHealth Solutions Founder"
               className="w-full h-auto object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-healthcare-navy/50 via-transparent to-transparent" />
           </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Content */}
           <div>
-            <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+            <span className="eyebrow mb-5">
               About Us
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-6 leading-[1.1]">
               Ghana's Trusted Digital Health{" "}
               <span className="text-gradient">Transformation Partner</span>
             </h2>
@@ -66,7 +66,7 @@ const AboutSection = () => {
               {["Consulting & Advisory", "Technology Vendor", "Systems Integrator", "Implementation Partner"].map((item) => (
                 <span 
                   key={item}
-                  className="bg-muted text-foreground px-4 py-2 rounded-full text-sm font-medium"
+                  className="bg-card border border-border text-foreground/80 px-4 py-2 rounded-full text-sm font-medium shadow-card"
                 >
                   {item}
                 </span>
@@ -79,10 +79,10 @@ const AboutSection = () => {
             {expertise.map((item, index) => (
               <div 
                 key={item.title}
-                className="bg-card p-6 rounded-xl shadow-card hover-lift border border-border"
+                className="bg-card p-6 rounded-2xl shadow-card hover-lift border border-border"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-primary/[0.07] ring-1 ring-primary/15 rounded-xl flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-display font-semibold text-foreground mb-2">

@@ -53,14 +53,14 @@ const caseStudies = [
 
 const CaseStudiesSection = () => {
   return (
-    <section id="case-studies" className="py-24 bg-background">
+    <section id="case-studies" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+          <span className="eyebrow mb-5">
             Proven Impact
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-6 leading-[1.1]">
             Case Studies:{" "}
             <span className="text-gradient">Transforming Healthcare in Ghana</span>
           </h2>
@@ -75,7 +75,7 @@ const CaseStudiesSection = () => {
           {caseStudies.map((study, index) => (
             <div
               key={study.id}
-              className={`bg-card rounded-3xl shadow-card border border-border overflow-hidden ${
+              className={`bg-card rounded-3xl shadow-card hover-lift border border-border overflow-hidden ${
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
             >
@@ -84,7 +84,7 @@ const CaseStudiesSection = () => {
                 <div className="p-8 lg:p-12">
                   {/* Category Badge */}
                   <div className="flex items-center gap-3 mb-6">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                       study.color === 'primary' ? 'bg-primary/10' :
                       study.color === 'secondary' ? 'bg-secondary/10' : 'bg-accent/10'
                     }`}>
@@ -101,7 +101,7 @@ const CaseStudiesSection = () => {
                     </span>
                   </div>
 
-                  <h3 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-6">
+                  <h3 className="font-display text-2xl lg:text-3xl font-extrabold text-foreground mb-6 leading-[1.1]">
                     {study.title}
                   </h3>
 

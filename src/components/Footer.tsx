@@ -12,17 +12,17 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-foreground py-16">
+    <footer className="bg-[#081B33] py-16 border-t border-white/5">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Logo variant="white" className="mb-4" />
+            <Logo variant="white" className="mb-5" />
             <p className="text-white/60 mb-4 max-w-md leading-relaxed">
               Powering Ghana's Digital Health Future — Strategic eHealth Solutions is your 
               trusted partner for national-scale health system transformation.
             </p>
-            <p className="text-secondary text-sm font-medium mb-4">
+            <p className="text-[#8FDCD2] text-sm font-medium mb-5">
               "Connecting Care Through Intelligent Health Systems"
             </p>
             <div className="flex items-center gap-4">
@@ -49,7 +49,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-white/90 text-xs font-bold uppercase tracking-[0.14em] mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-2">
               {[
                 { label: "About Us", href: "#about" },
@@ -70,7 +70,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <h4 className="text-white/90 text-xs font-bold uppercase tracking-[0.14em] mb-4">Contact</h4>
             <div className="space-y-2 text-white/60 text-sm">
               <p>Accra, Ghana</p>
               <a href="mailto:contact@strategicehealthsolutions.com" className="block hover:text-white transition-colors">contact@strategicehealthsolutions.com</a>

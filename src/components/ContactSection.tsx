@@ -99,8 +99,9 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-healthcare-navy relative overflow-hidden">
+    <section id="contact" className="py-24 md:py-32 bg-healthcare-navy relative overflow-hidden">
       {/* Background Effects */}
+      <div className="absolute inset-0 bg-grid" aria-hidden="true" />
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
@@ -110,10 +111,10 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left: Content */}
           <div>
-            <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-4">
+            <span className="eyebrow eyebrow-dark mb-5">
               Get Started
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-[1.1]">
               Ready to Transform{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">
                 Healthcare in Ghana?
@@ -128,19 +129,19 @@ const ContactSection = () => {
             {/* Contact Info */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-4 text-white/80">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.06] ring-1 ring-white/10 flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-secondary" />
                 </div>
                 <span>Accra, Ghana</span>
               </div>
               <div className="flex items-center gap-4 text-white/80">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.06] ring-1 ring-white/10 flex items-center justify-center">
                   <Mail className="w-5 h-5 text-secondary" />
                 </div>
                 <a href="mailto:contact@strategicehealthsolutions.com" className="break-all hover:text-secondary transition-colors">contact@strategicehealthsolutions.com</a>
               </div>
               <div className="flex items-center gap-4 text-white/80">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.06] ring-1 ring-white/10 flex items-center justify-center">
                   <Phone className="w-5 h-5 text-secondary" />
                 </div>
                 <div className="flex flex-col">
@@ -164,7 +165,7 @@ const ContactSection = () => {
           </div>
 
           {/* Right: Form */}
-          <div className="bg-card rounded-2xl p-8 shadow-elevated">
+          <div className="bg-card rounded-3xl p-8 md:p-10 shadow-elevated ring-1 ring-white/10">
             {isSuccess ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
@@ -291,7 +292,7 @@ const ContactSection = () => {
                     <Button 
                       type="submit" 
                       size="lg" 
-                      className="w-full bg-primary hover:bg-primary/90"
+                      className="w-full h-12 bg-healthcare-navy hover:bg-primary"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (

@@ -41,31 +41,31 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white py-3",
-        isScrolled 
-          ? "shadow-elevated border-b border-primary/10" 
-          : "shadow-card"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b backdrop-blur-xl",
+        isScrolled
+          ? "bg-white/85 border-border py-2.5 shadow-card"
+          : "bg-white/70 border-transparent py-3.5"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <button onClick={scrollToTop} className="cursor-pointer">
+        <button onClick={scrollToTop} className="cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <Logo variant="default" />
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => scrollToSection(link.href)}
-              className="text-sm font-medium transition-colors text-primary hover:text-secondary"
+              className="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-primary/[0.06] hover:text-primary"
             >
               {link.label}
             </button>
           ))}
           <button
             onClick={() => setIsGalleryOpen(true)}
-            className="text-sm font-medium transition-colors text-primary hover:text-secondary flex items-center gap-1.5"
+            className="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/70 transition-colors hover:bg-primary/[0.06] hover:text-primary flex items-center gap-1.5"
           >
             <Images className="w-4 h-4" />
             Gallery
@@ -78,14 +78,14 @@ const Header = () => {
             variant="outline"
             size="sm"
             onClick={() => scrollToSection("#contact")}
-            className="border-primary text-primary hover:bg-primary hover:text-white"
+            className="border-border bg-transparent text-foreground hover:border-primary hover:bg-transparent hover:text-primary"
           >
             Contact
           </Button>
           <Button
             size="sm"
             onClick={() => scrollToSection("#contact")}
-            className="bg-secondary hover:bg-secondary/90"
+            className="bg-healthcare-navy text-white shadow-card hover:bg-primary"
           >
             Book Consultation
           </Button>
@@ -97,16 +97,16 @@ const Header = () => {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <X className="text-primary" size={24} />
+            <X className="text-healthcare-navy" size={24} />
           ) : (
-            <Menu className="text-primary" size={24} />
+            <Menu className="text-healthcare-navy" size={24} />
           )}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background shadow-elevated p-4 animate-fade-in">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-border shadow-elevated p-4 animate-fade-in">
           <nav className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <button
@@ -137,7 +137,7 @@ const Header = () => {
               </Button>
               <Button
                 onClick={() => scrollToSection("#contact")}
-                className="w-full bg-secondary hover:bg-secondary/90"
+                className="w-full bg-healthcare-navy text-white hover:bg-primary"
               >
                 Book Consultation
               </Button>
