@@ -23,7 +23,14 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Company Logo */}
           <div className="mb-10 flex flex-col items-center gap-4 animate-fade-up">
-            <BrandMark variant="light" className="h-20 w-20 md:h-24 md:w-24 drop-shadow-[0_12px_32px_rgba(41,163,151,0.35)]" title="Strategic eHealth Solutions" />
+            <div className="relative">
+              <div className="absolute -inset-3 rounded-[2rem] bg-[#4CC3B5]/25 blur-2xl" aria-hidden="true" />
+              <BrandMark
+                variant="white"
+                className="relative h-24 w-24 md:h-28 md:w-28 rounded-[1.6rem] ring-4 ring-white/15 shadow-[0_18px_44px_-12px_rgba(0,0,0,0.6)]"
+                title="Strategic eHealth Solutions"
+              />
+            </div>
             <div className="flex flex-col items-center leading-none">
               <span className="font-display text-2xl md:text-3xl font-extrabold tracking-[0.08em] text-white">STRATEGIC</span>
               <span className="mt-1.5 font-display text-sm md:text-base font-semibold tracking-[0.02em] text-[#8FDCD2]">eHealth Solutions</span>
