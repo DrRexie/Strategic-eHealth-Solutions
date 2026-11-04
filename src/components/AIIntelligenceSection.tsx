@@ -1,7 +1,7 @@
 import { ArrowRight, Check, Plus, ShieldCheck, Users } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { AI_CAPABILITIES } from "@/data/ai-capabilities";
-import { prefillConsultation } from "@/lib/consultation-prefill";
+import { jumpState, prefillConsultation } from "@/lib/consultation-prefill";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 
@@ -166,7 +166,11 @@ const AIIntelligenceSection = () => {
                   </span>
                 </button>
               </DialogTrigger>
-              <DialogContent className="max-h-[88vh] w-[min(94vw,46rem)] max-w-none gap-0 overflow-y-auto rounded-3xl border-0 p-0 [&>button.absolute]:text-white [&>button.absolute]:opacity-80 [&>button.absolute]:data-[state=open]:bg-transparent [&>button.absolute]:data-[state=open]:text-white">
+              <DialogContent
+                onCloseAutoFocus={(e) => {
+                  if (jumpState.toForm) e.preventDefault();
+                }}
+                className="max-h-[88vh] w-[min(94vw,46rem)] max-w-none gap-0 overflow-y-auto rounded-3xl border-0 p-0 [&>button.absolute]:text-white [&>button.absolute]:opacity-80 [&>button.absolute]:data-[state=open]:bg-transparent [&>button.absolute]:data-[state=open]:text-white">
                 <div className="bg-healthcare-navy px-7 pb-6 pt-7 text-white sm:px-9">
                   <DialogHeader className="space-y-3 text-left">
                     <div className="flex items-center gap-3">
