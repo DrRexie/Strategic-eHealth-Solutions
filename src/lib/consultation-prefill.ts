@@ -6,5 +6,5 @@ export function prefillConsultation(detail: { engagement?: string; message?: str
   window.setTimeout(() => {
     window.dispatchEvent(new CustomEvent(CONSULTATION_PREFILL_EVENT, { detail }));
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 150);
+  }, 400);
 }
