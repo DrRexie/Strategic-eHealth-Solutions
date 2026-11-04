@@ -196,7 +196,7 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Full Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Dr. Kwame Asante" {...field} />
+                              <Input autoComplete="name" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -209,7 +209,7 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Organization</FormLabel>
                             <FormControl>
-                              <Input placeholder="Ghana Health Service" {...field} />
+                              <Input autoComplete="organization" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -225,7 +225,7 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Email Address</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="kwame@ghs.gov.gh" {...field} />
+                              <Input type="email" autoComplete="email" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -238,7 +238,7 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Your Role</FormLabel>
                             <FormControl>
-                              <Input placeholder="Director of IT" {...field} />
+                              <Input autoComplete="organization-title" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
