@@ -1,38 +1,9 @@
-import { Activity, BarChart3, Bell, FileText, Plus, Stethoscope, TrendingUp } from "lucide-react";
+import { ArrowRight, Check, Plus, ShieldCheck, Users } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { AI_CAPABILITIES } from "@/data/ai-capabilities";
+import { prefillConsultation } from "@/lib/consultation-prefill";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-const aiCapabilities = [
-  {
-    icon: Stethoscope,
-    title: "Clinical Decision Support",
-    description: "AI-powered recommendations for diagnosis, treatment protocols, and care pathways."
-  },
-  {
-    icon: Activity,
-    title: "Early Warning Systems",
-    description: "Real-time monitoring and alerts for disease outbreaks and patient deterioration."
-  },
-  {
-    icon: BarChart3,
-    title: "Population Health Analytics",
-    description: "Advanced analytics identifying health trends and resource optimization opportunities."
-  },
-  {
-    icon: FileText,
-    title: "Automated Reporting",
-    description: "Intelligent generation of DHIMS2 reports, donor reports, and compliance documentation."
-  },
-  {
-    icon: Bell,
-    title: "Smart Notifications",
-    description: "Context-aware alerts for follow-ups, medication reminders, and care gaps."
-  },
-  {
-    icon: TrendingUp,
-    title: "Predictive Modeling",
-    description: "Forecast disease burden, resource needs, and health outcomes for planning."
-  }
-];
 
 /** The four systems connected by the AI Health Intelligence Hub, summarised from the rest of this site. */
 const connectedSystems = [
@@ -174,24 +145,110 @@ const AIIntelligenceSection = () => {
           </div>
         </div>
 
-        {/* Capabilities Grid */}
+        {/* Capabilities Grid — each card opens a detailed briefing */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {aiCapabilities.map((capability, index) => (
-            <div
-              key={capability.title}
-              className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] hover:border-secondary/40 transition-all duration-300"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-12 h-12 rounded-xl ring-1 ring-white/10 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center mb-4">
-                <capability.icon className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="font-display font-semibold text-white mb-2">
-                {capability.title}
-              </h3>
-              <p className="text-white/60 text-sm leading-relaxed">
-                {capability.description}
-              </p>
-            </div>
+          {AI_CAPABILITIES.map((capability, index) => (
+            <Dialog key={capability.title}>
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  className="group text-left bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] hover:border-secondary/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="w-12 h-12 rounded-xl ring-1 ring-white/10 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center mb-4">
+                    <capability.icon className="w-6 h-6 text-secondary" aria-hidden="true" />
+                  </div>
+                  <h3 className="font-display font-semibold text-white mb-2">{capability.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{capability.description}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-secondary/90 group-hover:text-secondary">
+                    <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                    View details
+                  </span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-h-[88vh] w-[min(94vw,46rem)] max-w-none gap-0 overflow-y-auto rounded-3xl border-0 p-0 [&>button.absolute]:text-white [&>button.absolute]:opacity-80 [&>button.absolute]:data-[state=open]:bg-transparent [&>button.absolute]:data-[state=open]:text-white">
+                <div className="bg-healthcare-navy px-7 pb-6 pt-7 text-white sm:px-9">
+                  <DialogHeader className="space-y-3 text-left">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                        <capability.icon className="h-5 w-5 text-[#4CC3B5]" aria-hidden="true" />
+                      </span>
+                      <span className="text-[11px] font-semibold uppercase tracking-widest text-[#8FDCD2]">AI-Powered Intelligence</span>
+                    </div>
+                    <DialogTitle className="font-display text-2xl font-bold text-white">{capability.title}</DialogTitle>
+                    <DialogDescription className="text-[15px] leading-relaxed text-white/75">{capability.overview}</DialogDescription>
+                  </DialogHeader>
+                </div>
+
+                <div className="space-y-7 px-7 py-7 sm:px-9">
+                  <div className="grid gap-7 sm:grid-cols-2">
+                    <section>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-primary">What it does</h4>
+                      <ul className="mt-3 space-y-2.5">
+                        {capability.whatItDoes.map((item) => (
+                          <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-foreground/85">
+                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                    <section>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-primary">How it works</h4>
+                      <ol className="mt-3 space-y-2.5">
+                        {capability.howItWorks.map((item, i) => (
+                          <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-foreground/85">
+                            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[11px] font-bold text-primary">{i + 1}</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ol>
+                    </section>
+                  </div>
+
+                  <section>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-primary">Connects with</h4>
+                    <ul className="mt-3 flex flex-wrap gap-2">
+                      {capability.connects.map((item) => (
+                        <li key={item} className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-foreground/80">{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+
+                  <section className="rounded-2xl border border-secondary/25 bg-secondary/5 p-5">
+                    <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondary">
+                      <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                      Safeguards
+                    </h4>
+                    <ul className="mt-3 space-y-1.5">
+                      {capability.safeguards.map((item) => (
+                        <li key={item} className="flex gap-2.5 text-sm text-foreground/85">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+
+                  <div className="flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <Users className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                      <span><span className="font-semibold text-foreground">Built for:</span> {capability.forWhom}</span>
+                    </p>
+                    <DialogClose asChild>
+                      <button
+                        type="button"
+                        onClick={() => prefillConsultation({ engagement: "demo", message: `I'd like to learn more about ${capability.title}.` })}
+                        className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-healthcare-navy px-6 text-sm font-semibold text-white transition-colors hover:bg-primary"
+                      >
+                        Discuss this capability
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </DialogClose>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
 

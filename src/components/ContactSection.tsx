@@ -1,6 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { GHS_BRIEFS, GHS_BRIEFS_CHECKED } from "@/data/ghs-briefs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CONSULTATION_PREFILL_EVENT } from "@/lib/consultation-prefill";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -55,6 +56,17 @@ const ContactSection = () => {
       message: "",
     },
   });
+
+  // AI capability panels can pre-select the engagement type and start the message.
+  useEffect(() => {
+    const onPrefill = (e: Event) => {
+      const { engagement, message } = (e as CustomEvent<{ engagement?: string; message?: string }>).detail ?? {};
+      if (engagement) form.setValue("engagement_type", engagement, { shouldValidate: false });
+      if (message && !form.getValues("message")) form.setValue("message", message);
+    };
+    window.addEventListener(CONSULTATION_PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(CONSULTATION_PREFILL_EVENT, onPrefill);
+  }, [form]);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -297,7 +309,7 @@ const ContactSection = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>How Can We Help?</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
                               <SelectTrigger>
                                 <SelectValue placeholder="Select engagement type" />
