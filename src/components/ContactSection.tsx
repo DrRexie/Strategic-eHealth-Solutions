@@ -1,8 +1,10 @@
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { GHS_BRIEFS, GHS_BRIEFS_CHECKED } from "@/data/ghs-briefs";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Send, CheckCircle2, MapPin, Mail, Phone } from "lucide-react";
+import { Send, CheckCircle2, MapPin, Mail, Phone, Plus, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -151,15 +153,58 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Quick Actions */}
+            {/* GHS briefings — each tag opens a short, sourced summary */}
             <div className="flex flex-wrap gap-3">
-              {["GHS Leadership", "Development Partners", "Donors & Investors"].map((item) => (
-                <span 
-                  key={item}
-                  className="bg-white/10 text-white/80 px-4 py-2 rounded-full text-sm"
-                >
-                  {item}
-                </span>
+              {GHS_BRIEFS.map((brief) => (
+                <Popover key={brief.label}>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className="group inline-flex min-h-10 items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/85 transition-all duration-200 hover:border-secondary/70 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary data-[state=open]:border-secondary data-[state=open]:bg-white/20 data-[state=open]:text-white"
+                    >
+                      {brief.label}
+                      <Plus className="h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-45" aria-hidden="true" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    side="top"
+                    align="start"
+                    sideOffset={10}
+                    collisionPadding={16}
+                    className="w-[min(92vw,26rem)] max-h-[70vh] overflow-y-auto rounded-2xl p-5 shadow-xl"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-primary">Ghana Health Service · {brief.label}</p>
+                    <h4 className="mt-1 font-display text-base font-semibold text-foreground">{brief.heading}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{brief.summary}</p>
+                    <ul className="mt-3 space-y-2 border-t border-border pt-3">
+                      {brief.points.map((point) => (
+                        <li key={point} className="flex gap-2 text-[13px] leading-relaxed text-foreground/85">
+                          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 border-t border-border pt-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Sources</p>
+                      <ul className="mt-1.5 space-y-1">
+                        {brief.sources.map((src) => (
+                          <li key={src.url}>
+                            <a
+                              href={src.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-start gap-1 text-xs text-primary hover:underline"
+                            >
+                              <ExternalLink className="mt-0.5 h-3 w-3 shrink-0" aria-hidden="true" />
+                              {src.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-3 text-[11px] text-muted-foreground">Information as of {GHS_BRIEFS_CHECKED}.</p>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               ))}
             </div>
           </div>
