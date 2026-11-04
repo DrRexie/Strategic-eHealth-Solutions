@@ -1,4 +1,5 @@
-import { Activity, BarChart3, Bell, FileText, Stethoscope, TrendingUp } from "lucide-react";
+import { Activity, BarChart3, Bell, FileText, Plus, Stethoscope, TrendingUp } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const aiCapabilities = [
   {
@@ -31,6 +32,50 @@ const aiCapabilities = [
     title: "Predictive Modeling",
     description: "Forecast disease burden, resource needs, and health outcomes for planning."
   }
+];
+
+/** The four systems connected by the AI Health Intelligence Hub, summarised from the rest of this site. */
+const connectedSystems = [
+  {
+    name: "EMR Systems",
+    summary:
+      "Electronic medical records for single facilities and nationwide deployments, customized for Ghana Health Service workflows. They hold the patient data the hub's AI agents work with.",
+    points: [
+      "Offline/online hybrid support and multi-facility management",
+      "Rolled out across 200+ GHS facilities, serving 3M+ patients a year",
+      "85% fewer duplicate patient records; 60% faster clinical documentation",
+    ],
+  },
+  {
+    name: "HIE Platform",
+    summary:
+      "Health Information Exchange: secure, consent-based sharing of patient records between public and private providers, so care continues wherever a patient is seen.",
+    points: [
+      "Connecting 150+ facilities with real-time data sharing across regions",
+      "40% fewer redundant laboratory tests",
+      "Streamlined referrals and stronger public health surveillance",
+    ],
+  },
+  {
+    name: "Analytics Dashboard",
+    summary:
+      "Real-time dashboards that turn connected health data into insight for decision-makers, from population health trends to resource planning.",
+    points: [
+      "Analyzing 10M+ health records",
+      "Early warning for disease outbreaks",
+      "Predictive models for resource needs and health outcomes",
+    ],
+  },
+  {
+    name: "GHS Reporting",
+    summary:
+      "Automated reporting for Ghana Health Service and the Ministry of Health, produced directly from facility data instead of manual compilation.",
+    points: [
+      "Intelligent generation of DHIMS2 reports",
+      "Automated donor and ministry reports and compliance documentation",
+      "Transparent M&E reporting aligned with international standards",
+    ],
+  },
 ];
 
 const AIIntelligenceSection = () => {
@@ -92,13 +137,37 @@ const AIIntelligenceSection = () => {
               </p>
             </div>
 
-            {/* Connected Systems */}
+            {/* Connected Systems — each opens a short summary */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {["EMR Systems", "HIE Platform", "Analytics Dashboard", "GHS Reporting"].map((system) => (
-                <div key={system} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-colors">
-                  <div className="w-3 h-3 rounded-full bg-secondary mx-auto mb-2 animate-pulse" />
-                  <span className="text-white/80 text-sm font-medium">{system}</span>
-                </div>
+              {connectedSystems.map((system) => (
+                <Popover key={system.name}>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className="group bg-white/5 border border-white/10 rounded-xl p-4 text-center transition-all duration-200 hover:bg-white/10 hover:border-secondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary data-[state=open]:bg-white/15 data-[state=open]:border-secondary"
+                    >
+                      <span className="block w-3 h-3 rounded-full bg-secondary mx-auto mb-2 animate-pulse" aria-hidden="true" />
+                      <span className="text-white/90 text-sm font-medium">{system.name}</span>
+                      <span className="mt-1 flex items-center justify-center gap-1 text-[11px] text-white/50 group-hover:text-secondary group-data-[state=open]:text-secondary">
+                        <Plus className="w-3 h-3 transition-transform duration-200 group-data-[state=open]:rotate-45" aria-hidden="true" />
+                        Learn more
+                      </span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent sideOffset={10} className="w-80 rounded-2xl p-5 shadow-xl">
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-primary">AI Health Intelligence Hub</p>
+                    <h4 className="mt-1 font-display text-base font-semibold text-foreground">{system.name}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{system.summary}</p>
+                    <ul className="mt-3 space-y-1.5 border-t border-border pt-3">
+                      {system.points.map((point) => (
+                        <li key={point} className="flex gap-2 text-xs text-foreground/80">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </PopoverContent>
+                </Popover>
               ))}
             </div>
           </div>
